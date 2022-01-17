@@ -160,7 +160,12 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>People Tracing</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Person_1__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Person_2__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CURRENCY_ISO_CODE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Contact_Date__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

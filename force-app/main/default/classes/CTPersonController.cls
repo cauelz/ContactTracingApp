@@ -11,7 +11,7 @@ public class CTPersonController {
                                         OwnerId, Status_Update_Date__c, SystemModstamp, Token__c
                                         FROM Person__c
                                         ORDER BY Status_Update_Date__c 
-                                        DESC LIMIT 100];
+                                        DESC NULLS LAST LIMIT 100];
 
         return personList;
     }
@@ -56,5 +56,15 @@ public class CTPersonController {
 
         // get the string value of hash blob
         return EncodingUtil.base64Encode(mobileHash);
+    }
+
+    public static Map<String, Integer> getHealthStatusCount() {
+
+        Map<String, Integer> healthCountMap = new Map<String, Integer>();
+        for(AggregateResult ar : [SELECT Health_Status__c, COUNT(Id) total FROM Person__c GROUP BY Health_Status__c]) {
+            healthCountMap.put((String) ar.get('Health_Status__c'), (Integer) ar.get('total'));
+        }
+
+        return healthCountMap;
     }
 }

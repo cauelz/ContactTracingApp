@@ -32,7 +32,7 @@ public class CTLocationController {
                                             WHERE Name LIKE: searchTerm OR
                                             Pincode__c LIKE: searchTerm OR
                                             Address__c LIKE: searchTerm
-                                            ORDER BY Status_Update_Date__c];
+                                            ORDER BY Status_Update_Date__c NULLS LAST];
 
         if(!locationList.isEmpty()) {
             return locationList;
@@ -57,5 +57,13 @@ public class CTLocationController {
         }
 
         return null;
+    }
+
+    public static Map<String, Integer> getStatusCount() {
+        Map<String, Integer> mapOfLocations = new Map<String, Integer>();
+        for(AggregateResult ar : [SELECT Status__c, COUNT(Id) total FROM Location__c GROUP BY Status__c]) {
+            mapOfLocations.put( (String) ar.get('Status__c'), (Integer) ar.get('total'));
+        }
+        return mapOfLocations;
     }
 }
