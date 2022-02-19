@@ -15,9 +15,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install Dependecies
-          command: . build/install_depedencies.sh
-      - run:
           name: SFDX Scanner Analysis
           command: . build/run_sfdx_scanner.sh
       - store_artifacts:
@@ -28,9 +25,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install Dependencies
-          command: . build/install_depedencies.sh
-      - run:
           name: SFDX Scanner Analysis
           command: . build/run_sfdx_scanner.sh
       - store_artifacts:
@@ -40,9 +34,6 @@ jobs:
       - image: circleci/node:latest
     steps:
       - checkout
-      - run:
-          name: "Install Dependencies"
-          command: . build/install_depedencies.sh
       - run: 
           name: Login to Org
           command: . build/login_to_org.sh
