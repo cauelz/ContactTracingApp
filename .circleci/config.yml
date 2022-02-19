@@ -53,6 +53,6 @@ workflows:
       # - code-review:
       #     requires:
       #       - run-tests
-      - deploy-code:
+      - deploy-code
           # requires:
           #   - code-review
