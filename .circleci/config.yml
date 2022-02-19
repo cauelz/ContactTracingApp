@@ -54,5 +54,5 @@ workflows:
       #     requires:
       #       - run-tests
       - deploy-code:
-          requires:
-            - code-review
+          # requires:
+          #   - code-review
