@@ -22,6 +22,19 @@ jobs:
           command: . build/run_sfdx_scanner.sh
       - store_artifacts:
           path: sfdxScannerAnalysis.csv
+  code-review:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: . build/install_dependencies.sh
+      - run:
+          name: SFDX Scanner Analysis
+          command: . build/run_sfdx_scanner.sh
+      - store_artifacts:
+          path: sfdxScannerAnalysis.csv
   deploy-code:
     docker:
       - image: circleci/node:latest
