@@ -34,10 +34,6 @@ jobs:
       - run:
           name: "Install Dependencies"
           command: . build/install_dependencies.sh
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - node_modules
       - run: 
           name: Login to Org
           command: . build/login_to_org.sh
