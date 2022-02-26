@@ -35,7 +35,7 @@ trigger ContactTrigger on Contact (after insert, after update, after delete, aft
 
             for(Contact con : Trigger.new) {
                 
-                if(String.isNotBlank(con.AccountId) && Trigger.oldMap.get(con.Id).Active__c != cont.Active__c) {
+                if(String.isNotBlank(con.AccountId) && Trigger.oldMap.get(con.Id).Active__c != con.Active__c) {
                     accountIds.add(con.AccountId);
                 } else if(Trigger.oldMap.get(con.Id).AccountId != con.AccountId) {
                     accountIds.add(con.AccountId);
