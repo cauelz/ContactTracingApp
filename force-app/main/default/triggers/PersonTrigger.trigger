@@ -12,7 +12,7 @@ trigger PersonTrigger on Person__c (before insert, after insert, before update, 
             PersonTriggerHandler.beforeUpdate(Trigger.new, Trigger.oldMap);
         }
         when AFTER_UPDATE {
-
+            PersonTriggerHandler.afterUpdate(Trigger.new, Trigger.oldMap);
         }
         when BEFORE_DELETE {
 
