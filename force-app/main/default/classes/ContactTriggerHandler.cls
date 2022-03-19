@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 public class ContactTriggerHandler {
 
     public static void afterInsertHandler(List<Contact> newRecords) {
@@ -55,4 +56,57 @@ public class ContactTriggerHandler {
 
     }
 
+=======
+public with sharing class ContactTriggerHandler {
+    
+    public static void afterInsertHandler(List<Contact> newConctacts) {
+        Set<Id> accountIds = new Set<Id>();
+        for(Contact con : newConctacts) {
+            if(String.isNotBlank(con.AccountId)) {
+                accountIds.add(con.AccountId);
+            }
+        }
+
+        AccountContactService.updateActiveContacts(accountIds);
+    }
+
+    public static void afterUpdateHandler(List<Contact> newContacts, Map<Id, Contact> oldContactMap) {
+        Set<Id> accountIds = new Set<Id>();
+
+        for(Contact con : newContacts) {
+            
+            if(String.isNotBlank(con.AccountId) && oldContactMap.get(con.Id).Active__c != con.Active__c) {
+                accountIds.add(con.AccountId);
+            } else if(oldContactMap.get(con.Id).AccountId != con.AccountId) {
+                accountIds.add(con.AccountId);
+                accountIds.add(oldContactMap.get(con.Id).AccountId);
+            }
+        }
+
+        AccountContactService.updateActiveContacts(accountIds);
+    }
+
+    public static void afterDeleteHandler(List<Contact> oldContacts) {
+
+        Set<Id> accountIds = new Set<Id>();
+
+        for(Contact con : oldContacts) {
+            if(String.isNotBlank(con.AccountId)) {
+                accountIds.add(con.AccountId);
+            }
+        }
+        AccountContactService.updateActiveContacts(accountIds);
+    }
+
+    public static void afterUndeleteHandler(List<Contact> newContacts) {
+        Set<Id> accountIds = new Set<Id>();
+        for(Contact con : newContacts) {
+            if(String.isNotBlank(con.AccountId)) {
+                accountIds.add(con.AccountId);
+            }
+        }
+
+        AccountContactService.updateActiveContacts(accountIds);
+    }
+>>>>>>> 6a4484d0981f54e7422bffe116c2136553ca0468
 }
