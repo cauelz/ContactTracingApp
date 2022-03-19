@@ -6,7 +6,7 @@ public class AccountTriggerHandler {
 
     public static void afterInsertHandler(List<Contact> newRecords) {
 
-        for(Account newAcc : newRecords) {
+        for(Contact newAcc : newRecords) {
             
         }
     }
