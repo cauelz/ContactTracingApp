@@ -66,7 +66,7 @@ public with sharing class PersonTriggerHandler {
         }
 
         if(!personToUpdate.isEmpty()) {
-            update perssonToUpdate;
+            update personToUpdate;
         }
 
         List<Location_Tracing__c> locationTraces = CTLocationTracingController.getLocationByPersonIds(statusChange);
@@ -75,6 +75,7 @@ public with sharing class PersonTriggerHandler {
             for(Location_Tracing__c trace: locationTraces) {
                 locationIds.add(trace.Location__c);
             }
+            CTLocationController.updateRedScore(locationIds);
         }
     }
 }
