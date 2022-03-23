@@ -6,7 +6,7 @@ public with sharing class PersonTriggerHandler {
         // todo: generate unique token for the person record
 
         for(Person__c person : newRecords) {
-            person.Health_Status__c = 'green';
+            person.Health_Status__c = 'Green';
             person.Token__c = CTPersonController.getToken(person.Mobile__c);
         }
     }
@@ -57,7 +57,7 @@ public with sharing class PersonTriggerHandler {
         //lets add secondaryContacts
         yellowStatus.addAll(CTPersonController.getSecondaryContacts(primaryContacts, alreadyProcessed));
 
-        for (Id pid : yellowStatus) {
+        for (Id pid : orangeStatus) {
             personToUpdate.add(new Person__c(Id=pid, Health_Status__c = 'Orange'));
         }
 
@@ -65,12 +65,14 @@ public with sharing class PersonTriggerHandler {
             personToUpdate.add(new Person__c(Id = pid, Health_Status__c = 'Yellow'));
         }
 
-        if(!personToUpdate.isEmpty()) {
+        System.debug(personToUpdate);
+
+        if(personToUpdate.size() > 0) {
             update personToUpdate;
         }
 
         List<Location_Tracing__c> locationTraces = CTLocationTracingController.getLocationByPersonIds(statusChange);
-        if(!locationTraces.isEmpty()) {
+        if(locationTraces != null && locationTraces.size() > 0) {
             Set<Id> locationIds = new Set<Id>();
             for(Location_Tracing__c trace: locationTraces) {
                 locationIds.add(trace.Location__c);
