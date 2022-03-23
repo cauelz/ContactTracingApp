@@ -39,20 +39,23 @@ public with sharing class PersonTriggerHandler {
             }
         }
 
+        Set<Id> alreadyProcessed = new Set<Id>();
+        alreadyProcessed.addAll(redStatus);
+
         Set<Id> orangeStatus = new Set<Id>();
         Set<Id> yellowStatus = new Set<Id>();
         
         //lets add cohabitants
-        orangeStatus.addAll(CTPersonController.getCohabitants(redStatus));
+        orangeStatus.addAll(CTPersonController.getCohabitants(redStatus, alreadyProcessed));
 
         //lets add neighbours
-        yellowStatus.addAll(CTPersonController.getNeighbours(redStatus));
+        yellowStatus.addAll(CTPersonController.getNeighbours(redStatus, alreadyProcessed));
 
         //lets add primaryContacts
-        Set<Id> primaryContacts = CTPersonController.getPrimaryContacts(redStatus);
+        Set<Id> primaryContacts = CTPersonController.getPrimaryContacts(redStatus, alreadyProcessed);
         orangeStatus.addAll(primaryContacts);
 
         //lets add secondaryContacts
-        yellowStatus.addAll(CTPersonController.getSecondaryContacts(primaryContacts));
+        yellowStatus.addAll(CTPersonController.getSecondaryContacts(primaryContacts, alreadyProcessed));
     }
 }
