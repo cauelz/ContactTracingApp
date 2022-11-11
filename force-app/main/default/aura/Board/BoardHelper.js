@@ -121,5 +121,10 @@
             randomArr[j] = temp;
         }
         return randomArr;
+    },
+
+    getWinWord: function(arr) {
+        const randomIndex = Math.floor(Math.random() * arr.length);
+        return arr[randomIndex];
     }
 })

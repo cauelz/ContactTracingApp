@@ -1,2 +1,12 @@
-.THIS {
+/* .THIS refers to the component itself.
+IF the element inside the component is a direct child, which means its an element right after the compoent TAG,
+you should write the css tag attached to the .THIS keyword like this: .THIS.cssclass */
+.THIS.board {
+    background: #f7fafc;
+    position: relative;
+}
+
+.THIS .win-word {
+    text-transform: uppercase;
+    font-weight: bold; 
 }
