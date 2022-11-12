@@ -6,9 +6,6 @@
 
         component.set("v.selectedMode", selectedValue);
 
-        console.log("The start new game button was clicked, The Game Mode is: ", selectedValue);
-        
-        console.log(component.get("v.selectedMode"));
     },
 
     reshuffleBoard: function(component, event, helper) {

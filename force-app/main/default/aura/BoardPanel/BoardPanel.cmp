@@ -32,4 +32,6 @@
         </lightning:layout>
 
     </lightning:card>
+
+    <c:Board mode="{!v.selectedMode}"></c:Board>
 </aura:component>	

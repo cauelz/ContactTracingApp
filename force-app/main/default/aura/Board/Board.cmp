@@ -1,6 +1,6 @@
 <aura:component implements="flexipage:availableForAllPageTypes">
 
-    <aura:attribute name="mode" type="String" default="hard"/>
+    <aura:attribute name="mode" type="String" default="easy"/>
     <aura:attribute name="words" type="List" access="private"/>
     <aura:attribute name="winWord" type="String" access="private"/>
     <aura:attribute name="clickCount" type="Integer" default="0" access="private"/>

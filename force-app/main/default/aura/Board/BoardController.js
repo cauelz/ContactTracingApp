@@ -20,9 +20,6 @@
         const words = helper.getWords(column*column); 
         component.set("v.words", words);
 
-        console.log('Words: ' + words);
-        console.log('Win Word: ' + helper.getWinWord(words));
-
         component.set("v.winWord", helper.getWinWord(words));
     },
     doRender : function(component, event, helper) {
