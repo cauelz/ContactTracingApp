@@ -31,7 +31,5 @@
 
         </lightning:layout>
 
-        <p>!BOUND SELECTED MODE IS: {!v.selectedMode}</p>
-        <p>!UNBOUND SELECT MODE IS: {#V.selectedMode}</p> 
     </lightning:card>
 </aura:component>	
